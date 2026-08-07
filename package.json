@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@apollo/client": "^3.11.8",
     "expo": "~54.0.0",
     "expo-status-bar": "~3.0.9",
     "formik": "^2.4.9",
+    "graphql": "^15.0.0",
     "history": "^4.10.1",
     "react": "19.1.0",
     "react-native": "0.81.5",
