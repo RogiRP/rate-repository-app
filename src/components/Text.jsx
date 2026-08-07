@@ -1,9 +1,11 @@
-import { Text as NativeText, StyleSheet } from "react-native";
+import { Text as NativeText, StyleSheet, Platform } from "react-native";
+import theme from "../theme";
 
 const styles = StyleSheet.create({
   text: {
     fontSize: 14,
-    color: "#24292e",
+    color: theme.colors.textPrimary,
+    fontFamily: theme.fonts.main,
   },
   bold: {
     fontWeight: "bold",
