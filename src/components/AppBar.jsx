@@ -1,11 +1,12 @@
 import {
   View,
-  Text,
   StyleSheet,
-  TouchableWithoutFeedback,
   ScrollView,
+  TouchableWithoutFeedback,
 } from "react-native";
 import Constants from "expo-constants";
+import { Link } from "react-router-native";
+import Text from "./Text";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,13 +26,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = ({ text, onPress }) => {
+const AppBarTab = ({ text, to }) => {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <Link to={to} component={TouchableWithoutFeedback}>
       <View style={styles.tab}>
         <Text style={styles.tabText}>{text}</Text>
       </View>
-    </TouchableWithoutFeedback>
+    </Link>
   );
 };
 
@@ -39,7 +40,8 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>
-        <AppBarTab text="Repositories" />
+        <AppBarTab text="Repositories" to="/" />
+        <AppBarTab text="Sign In" to="/sign-in" />
       </ScrollView>
     </View>
   );
