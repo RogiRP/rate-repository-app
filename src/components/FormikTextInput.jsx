@@ -3,9 +3,10 @@ import { StyleSheet, View, TextInput, Text } from "react-native";
 
 const styles = StyleSheet.create({
   errorText: {
-    color: "red",
+    color: "#d73a4a",
     marginTop: 4,
     fontSize: 12,
+    marginBottom: 4,
   },
   input: {
     borderWidth: 1,
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   inputError: {
-    borderColor: "red",
+    borderColor: "#d73a4a",
   },
 });
 
