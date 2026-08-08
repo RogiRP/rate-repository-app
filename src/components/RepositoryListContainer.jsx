@@ -1,16 +1,35 @@
 import { FlatList, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useHistory } from "react-router-native";
+import { Picker } from "@react-native-picker/picker";
 import RepositoryItem from "./RepositoryItem";
 
 const styles = StyleSheet.create({
   separator: {
     height: 10,
   },
+  pickerContainer: {
+    backgroundColor: "white",
+    padding: 10,
+  },
 });
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories }) => {
+const OrderPicker = ({ selectedOrder, onOrderChange }) => (
+  <View style={styles.pickerContainer}>
+    <Picker selectedValue={selectedOrder} onValueChange={onOrderChange}>
+      <Picker.Item label="Latest repositories" value="latest" />
+      <Picker.Item label="Highest rated repositories" value="highest" />
+      <Picker.Item label="Lowest rated repositories" value="lowest" />
+    </Picker>
+  </View>
+);
+
+const RepositoryListContainer = ({
+  repositories,
+  selectedOrder,
+  onOrderChange,
+}) => {
   const history = useHistory();
 
   const repositoryNodes = repositories
@@ -29,6 +48,12 @@ const RepositoryListContainer = ({ repositories }) => {
         </TouchableOpacity>
       )}
       keyExtractor={(item) => item.id}
+      ListHeaderComponent={
+        <OrderPicker
+          selectedOrder={selectedOrder}
+          onOrderChange={onOrderChange}
+        />
+      }
     />
   );
 };
