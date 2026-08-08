@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDebounce } from "use-debounce";
 import RepositoryListContainer from "./RepositoryListContainer";
 import useRepositories from "../hooks/useRepositories";
 
@@ -15,13 +16,21 @@ const getOrderVariables = (order) => {
 
 const RepositoryList = () => {
   const [selectedOrder, setSelectedOrder] = useState("latest");
-  const { repositories } = useRepositories(getOrderVariables(selectedOrder));
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [debouncedKeyword] = useDebounce(searchKeyword, 500);
+
+  const { repositories } = useRepositories({
+    ...getOrderVariables(selectedOrder),
+    searchKeyword: debouncedKeyword,
+  });
 
   return (
     <RepositoryListContainer
       repositories={repositories}
       selectedOrder={selectedOrder}
       onOrderChange={setSelectedOrder}
+      searchKeyword={searchKeyword}
+      onSearchChange={setSearchKeyword}
     />
   );
 };
