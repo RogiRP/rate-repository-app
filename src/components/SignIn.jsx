@@ -35,20 +35,7 @@ const initialValues = {
   password: "",
 };
 
-const SignIn = () => {
-  const [signIn] = useSignIn();
-  const history = useHistory();
-
-  const onSubmit = async (values) => {
-    const { username, password } = values;
-    try {
-      await signIn({ username, password });
-      history.push("/");
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
+export const SignInContainer = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -70,6 +57,23 @@ const SignIn = () => {
       )}
     </Formik>
   );
+};
+
+const SignIn = () => {
+  const [signIn] = useSignIn();
+  const history = useHistory();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    try {
+      await signIn({ username, password });
+      history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return <SignInContainer onSubmit={onSubmit} />;
 };
 
 export default SignIn;
