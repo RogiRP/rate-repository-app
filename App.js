@@ -17,9 +17,7 @@ const authStorage = new AuthStorage();
 
 const createApolloClient = (storage) => {
   const httpLink = new HttpLink({
-    uri:
-      Constants.expoConfig?.extra?.apolloUri ||
-      "http://192.168.1.68:4000/graphql",
+    uri: Constants.expoConfig?.extra?.apolloUri,
   });
 
   const authLink = setContext(async (_, { headers }) => {
